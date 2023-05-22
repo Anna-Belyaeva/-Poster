@@ -15,28 +15,101 @@ public class PosterTest {
     PosterItem item7 = new PosterItem(7, 32, "Номер один");
 
     @Test
-    public void shouldAddedMovies() {
+    public void shouldAddedMoviesEqualsLimit() {
 
         manager.add(item1);
         manager.add(item2);
         manager.add(item6);
         manager.add(item7);
+        manager.add(item3);
 
-        PosterItem[] expected = {item1, item2, item6, item7};
+        PosterItem[] expected = {item1, item2, item6, item7, item3};
         PosterItem[] actual = manager.findAll();
 
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldAdded1Movie() {
-        manager.add(item4);
+    public void shouldAddedMoviesUnderLimit() {
 
-        PosterItem[] expected = {item4};
+        manager.add(item1);
+        manager.add(item2);
+        manager.add(item7);
+        manager.add(item3);
+
+        PosterItem[] expected = {item1, item2, item7, item3};
         PosterItem[] actual = manager.findAll();
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldAddedMoviesAboveLimit() {
+
+        manager.add(item1);
+        manager.add(item2);
+        manager.add(item7);
+        manager.add(item3);
+        manager.add(item4);
+        manager.add(item5);
+
+        PosterItem[] expected = {item1, item2, item7, item3, item4};
+        PosterItem[] actual = manager.findAll();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldAddedMoviesEqualsSetLimit() {
+        PosterManager manager = new PosterManager(6);
+
+        manager.add(item1);
+        manager.add(item2);
+        manager.add(item6);
+        manager.add(item7);
+        manager.add(item3);
+        manager.add(item4);
+
+        PosterItem[] expected = {item1, item2, item6, item7, item3, item4};
+        PosterItem[] actual = manager.findAll();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldAddedMoviesUnderSetLimit() {
+        PosterManager manager = new PosterManager(6);
+
+        manager.add(item1);
+        manager.add(item2);
+        manager.add(item6);
+        manager.add(item7);
+        manager.add(item3);
+
+        PosterItem[] expected = {item1, item2, item6, item7, item3};
+        PosterItem[] actual = manager.findAll();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldAddedMoviesAboveSetLimit() {
+        PosterManager manager = new PosterManager(6);
+
+        manager.add(item1);
+        manager.add(item2);
+        manager.add(item6);
+        manager.add(item7);
+        manager.add(item3);
+        manager.add(item4);
+        manager.add(item5);
+
+        PosterItem[] expected = {item1, item2, item6, item7, item3, item4};
+        PosterItem[] actual = manager.findAll();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
 
     @Test
     public void shouldNotFindMovie() {
@@ -48,7 +121,7 @@ public class PosterTest {
 
 
     @Test
-    public void shouldReverse5Items() {
+    public void shouldShowReverseLastMoviesEqualsLimit() {
         manager.add(item1);
         manager.add(item2);
         manager.add(item3);
@@ -63,20 +136,74 @@ public class PosterTest {
     }
 
     @Test
-    public void shouldReverseUnderLimit() {
+    public void shouldShowReverseLastMoviesUnderLimit() {
         manager.add(item1);
         manager.add(item2);
         manager.add(item3);
+        manager.add(item4);
 
-        PosterItem[] expected = {item3, item2, item1};
+        PosterItem[] expected = {item4, item3, item2, item1};
         PosterItem[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
+
     }
 
     @Test
-    public void shouldReverseWithSetLimit() {
-        PosterManager manager = new PosterManager(7);
+    public void shouldShowReverseLastMoviesAboveLimit() {
+        manager.add(item1);
+        manager.add(item2);
+        manager.add(item3);
+        manager.add(item4);
+        manager.add(item5);
+        manager.add(item6);
+
+        PosterItem[] expected = {item5, item4, item3, item2, item1};
+        PosterItem[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldShowReverseLastMoviesEqualsSetLimit() {
+        PosterManager manager = new PosterManager(6);
+
+        manager.add(item1);
+        manager.add(item2);
+        manager.add(item3);
+        manager.add(item4);
+        manager.add(item5);
+        manager.add(item6);
+
+        PosterItem[] expected = {item6, item5, item4, item3, item2, item1};
+        PosterItem[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldShowReverseLastMoviesUnderSetLimit() {
+        PosterManager manager = new PosterManager(6);
+
+        manager.add(item1);
+        manager.add(item2);
+        manager.add(item3);
+        manager.add(item4);
+        manager.add(item5);
+
+        PosterItem[] expected = {item5, item4, item3, item2, item1};
+        PosterItem[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldShowReverseLastMoviesAboveSetLimit() {
+        PosterManager manager = new PosterManager(6);
+
         manager.add(item1);
         manager.add(item2);
         manager.add(item3);
@@ -85,11 +212,11 @@ public class PosterTest {
         manager.add(item6);
         manager.add(item7);
 
-        PosterItem[] expected = {item7, item6, item5, item4, item3, item2, item1};
+        PosterItem[] expected = {item6, item5, item4, item3, item2, item1};
         PosterItem[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
+
     }
 
 }
-
