@@ -40,22 +40,17 @@ public class PosterManager {
     ///вывод в обратном порядке
     public PosterItem[] findLast() {
         int resultLength = limit;
-        if (movies.length > limit) {                                    //не записываем фильмы сверх лимита
-            PosterItem[] tmp = new PosterItem[movies.length - 1];
-            for (int i = 0; i < movies.length - 1; i++) {
-                tmp[i] = movies[i];
-            }
-            this.movies = tmp;
-        } else if (movies.length < limit) {                             //если фильмов мельше лимита, устанавливаем новый
+        if (movies.length < limit) {
             resultLength = movies.length;}
 
-            PosterItem[] reversed = new PosterItem[resultLength];       //переворачиваем массив
+        PosterItem[] reversed = new PosterItem[resultLength];
 
-            for (int i = 0; i < reversed.length; i++) {
-                reversed[i] = movies[movies.length - 1 - i];
-            }
-            return reversed;
+        for (int i = 0; i < reversed.length; i++) {
+            reversed[i] = movies[movies.length - 1 - i];
         }
+        return reversed;
+    }
+
 }
 
 

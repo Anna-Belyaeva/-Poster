@@ -158,7 +158,7 @@ public class PosterTest {
         manager.add(item5);
         manager.add(item6);
 
-        PosterItem[] expected = {item5, item4, item3, item2, item1};
+        PosterItem[] expected = {item6, item5, item4, item3, item2};
         PosterItem[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
@@ -212,7 +212,7 @@ public class PosterTest {
         manager.add(item6);
         manager.add(item7);
 
-        PosterItem[] expected = {item6, item5, item4, item3, item2, item1};
+        PosterItem[] expected = {item7, item6, item5, item4, item3, item2};
         PosterItem[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
