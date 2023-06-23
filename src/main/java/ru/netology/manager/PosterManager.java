@@ -3,8 +3,8 @@ package ru.netology.manager;
 import ru.netology.domain.PosterItem;
 
 public class PosterManager {
+    private final int limit;
     private PosterItem[] movies = new PosterItem[0];
-    private int limit;
 
     public PosterManager() {
         this.limit = 5;
@@ -17,9 +17,7 @@ public class PosterManager {
     ///добавление фильма
     public void add(PosterItem movie) {
         PosterItem[] tmp = new PosterItem[movies.length + 1];
-        for (int i = 0; i < movies.length; i++) {
-            tmp[i] = movies[i];
-        }
+        System.arraycopy(movies, 0, tmp, 0, movies.length);
         tmp[tmp.length - 1] = movie;
         this.movies = tmp;
     }
@@ -28,9 +26,7 @@ public class PosterManager {
     public PosterItem[] findAll() {
         if (movies.length > limit) {
             PosterItem[] tmp = new PosterItem[movies.length - 1];
-            for (int i = 0; i < movies.length - 1; i++) {
-                tmp[i] = movies[i];
-            }
+            System.arraycopy(movies, 0, tmp, 0, movies.length - 1);
             this.movies = tmp;
         }
         return movies;
@@ -41,7 +37,8 @@ public class PosterManager {
     public PosterItem[] findLast() {
         int resultLength = limit;
         if (movies.length < limit) {
-            resultLength = movies.length;}
+            resultLength = movies.length;
+        }
 
         PosterItem[] reversed = new PosterItem[resultLength];
 
@@ -50,7 +47,6 @@ public class PosterManager {
         }
         return reversed;
     }
-
 }
 
 

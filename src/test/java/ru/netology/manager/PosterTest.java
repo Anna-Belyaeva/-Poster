@@ -218,5 +218,4 @@ public class PosterTest {
         Assertions.assertArrayEquals(expected, actual);
 
     }
-
 }

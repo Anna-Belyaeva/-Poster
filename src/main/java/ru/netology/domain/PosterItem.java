@@ -13,7 +13,6 @@ public class PosterItem {
 
     public PosterItem() {
         int sizeLimit;
-
     }
 
     public PosterItem(int sizeLimit) {
@@ -43,5 +42,4 @@ public class PosterItem {
     public void getMovieTitle() {
         this.movieTitle = movieTitle;
     }
-
 }
